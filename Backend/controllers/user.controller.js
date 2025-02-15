@@ -7,19 +7,21 @@ module.exports.registerUser = async (req, res, next) => {
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-    
-    const {firstname, lastname, email, password} = req.body;
 
-    const hasedPassword = await userService.hashPassword(password);
+    console.log(req.body);
+    
+    const {fullname, email, password} = req.body;
+
+    const hashedPassword = await userModel.hashPassword(password);
 
     const user = await userService.createUser({
-        firstname,
-        lastname,
+        firstname: fullname.firstname,
+        lastname: fullname.lastname,
         email,
-        password: hasedPassword
+        password: hashedPassword
     });
     const token = user.generateAuthToken();
     
     res.status(201).json({ token, user });
 }
-  
+   
