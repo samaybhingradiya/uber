@@ -111,4 +111,57 @@ Content-Type: application/json
 3. Return a status of 200 and a token if valid.  
 
 ## Error Handling
-• If validation fails or credentials are invalid, a 401 response is returned.  
+• If validation fails or credentials are invalid, a 401 response is returned.
+
+# /user/profile Endpoint
+
+## Description
+Retrieves the user's profile.
+
+## Method
+GET
+
+## Required Data
+• None
+
+## Response
+• 200 (OK)  
+  • Returns the user's profile  
+• 401 (Unauthorized)  
+  • If the user is not authenticated  
+
+## Example Response
+```json
+{
+  "id": "12345",
+  "fullname": {
+    "firstname": "John",
+    "lastname": "Doe"
+  },
+  "email": "john@example.com"
+}
+```
+
+# /user/logout Endpoint
+
+## Description
+Logs out the user by invalidating their token.
+
+## Method
+GET
+
+## Required Data
+• None
+
+## Response
+• 200 (OK)  
+  • User is successfully logged out  
+• 401 (Unauthorized)  
+  • If the user is not authenticated  
+
+## Example Response
+```json
+{
+  "message": "Logged out"
+}
+```
